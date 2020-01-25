@@ -1,6 +1,6 @@
 # HanLP: Han Language Processing
 
- [English](https://github.com/hankcs/HanLP/blob/master/README.md) | [1.x版](https://github.com/hankcs/HanLP/tree/1.x) | [论坛](https://bbs.hankcs.com/)
+ [English](https://github.com/hankcs/HanLP/tree/master) | [1.x版](https://github.com/hankcs/HanLP/tree/1.x) | [论坛](https://bbs.hankcs.com/)
 
 面向生产环境的多语种自然语言处理工具包，基于 TensorFlow 2.0，目标是普及落地最前沿的NLP技术。HanLP具备功能完善、性能高效、架构清晰、语料时新、可自定义的特点。内部算法经过工业界和学术界考验，配套书籍[《自然语言处理入门》](http://nlp.hankcs.com/book.php)已经出版。目前，基于深度学习的HanLP 2.0正处于alpha测试阶段，未来将实现知识图谱、问答系统、自动摘要、文本语义相似度、指代消解、三元组抽取、实体链接等功能。欢迎加入[蝴蝶效应](https://bbs.hankcs.com/)参与讨论，或者反馈bug和功能请求到[issue区](https://github.com/hankcs/HanLP/issues)。Java用户请使用[1.x分支](https://github.com/hankcs/HanLP/tree/1.x) ，经典稳定，永久维护。RESTful API正在开发中，2.0正式版将支持包括Java、Python在内的开发语言。
 
@@ -352,6 +352,18 @@ classifier.evaluate(CHNSENTICORP_ERNIE_TEST, save_dir=save_dir)
 ## License
 
 HanLP 的授权协议为 **Apache License 2.0**，可免费用做商业用途。请在产品说明中附加HanLP的链接和授权协议。HanLP受版权法保护，侵权必究。
+
+##### 自然语义（青岛）科技有限公司
+
+HanLP从v1.7版起独立运作，由自然语义（青岛）科技有限公司作为项目主体，主导后续版本的开发，并拥有后续版本的版权。
+
+##### 大快搜索
+
+HanLP v1.3~v1.65版由大快搜索主导开发，继续完全开源，大快搜索拥有相关版权。
+
+##### 上海林原公司
+
+HanLP 早期得到了上海林原公司的大力支持，并拥有1.28及前序版本的版权，相关版本也曾在上海林原公司网站发布。
 
 ## References
 
