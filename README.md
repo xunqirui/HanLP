@@ -40,9 +40,9 @@ HanLP 会自动将 `PKU_NAME_MERGED_SIX_MONTHS_CONVSEG` 解析为一个URL，然
 ['Do', "n't", 'go', 'gentle', 'into', 'that', 'good', 'night', '.']
 ```
 
-#### 再进一步
+#### 并行
 
-好消息，你可以运行得更快。在深度学习的时代，批处理通常带来`batch_size`的加速比。你可以并行切分多个句子，代价是消耗更多GPU内存。
+好消息，你可以运行得更快。在深度学习的时代，批处理通常带来`batch_size`的加速比。你可以并行切分多个句子，代价是消耗更多GPU显存。
 
 ```python
 >>> tokenizer(['萨哈夫说，伊拉克将同联合国销毁伊拉克大规模杀伤性武器特别委员会继续保持合作。',
@@ -141,16 +141,11 @@ accuracy:  99.37%; precision:  94.79%; recall:  95.65%; FB1:  95.22
 
 ```python
 >>> syntactic_parser = hanlp.load(hanlp.pretrained.dep.CTB7_BIAFFINE_DEP_ZH)
->>> print(syntactic_parser([('中国', 'NR'),('批准', 'VV'),('设立', 'VV'),('了', 'AS'),('三十万', 'CD'),('家', 'M'),('外商', 'NN'),('投资', 'NN'), ('企业', 'NN')]))
-1	中国	_	NR	_	_	2	nsubj	_	_
-2	批准	_	VV	_	_	0	root	_	_
-3	设立	_	VV	_	_	2	ccomp	_	_
-4	了	_	AS	_	_	3	asp	_	_
-5	三十万	_	CD	_	_	6	nummod	_	_
-6	家	_	M	_	_	9	clf	_	_
-7	外商	_	NN	_	_	9	nn	_	_
-8	投资	_	NN	_	_	9	nn	_	_
-9	企业	_	NN	_	_	3	dobj	_	_
+>>> print(syntactic_parser([('蜡烛', 'NN'), ('两', 'CD'), ('头', 'NN'), ('烧', 'VV')]))
+1	蜡烛	_	NN	_	_	4	nsubj	_	_
+2	两	_	CD	_	_	3	nummod	_	_
+3	头	_	NN	_	_	4	dep	_	_
+4	烧	_	VV	_	_	0	root	_	_
 ```
 
 关于句法标签，请参考[《自然语言处理入门》](http://nlp.hankcs.com/book.php)第11章，或等待正式文档。
@@ -179,21 +174,15 @@ HanLP实现了最先进的biaffine[^biaffine] 模型，支持任意语种的语�
 
 ```python
 >>> semantic_parser = hanlp.load(SEMEVAL16_NEWS_BIAFFINE_ZH)
->>> print(semantic_parser([('中国', 'NR'),('批准', 'VV'),('设立', 'VV'),('了', 'AS'),('三十万', 'CD'),('家', 'M'),('外商', 'NN'),('投资', 'NN'), ('企业', 'NN')]))
-1	中国	_	NR	_	_	2	Agt	_	_
-1	中国	_	NR	_	_	3	Agt	_	_
-2	批准	_	VV	_	_	0	Root	_	_
-3	设立	_	VV	_	_	2	eProg	_	_
-4	了	_	AS	_	_	3	mTime	_	_
-5	三十万	_	CD	_	_	6	Quan	_	_
-6	家	_	M	_	_	9	Qp	_	_
-7	外商	_	NN	_	_	8	Agt	_	_
-8	投资	_	NN	_	_	9	rDatv	_	_
-9	企业	_	NN	_	_	2	Pat	_	_
-9	企业	_	NN	_	_	3	Prod	_	_
+>>> print(semantic_parser([('蜡烛', 'NN'), ('两', 'CD'), ('头', 'NN'), ('烧', 'VV')]))
+1	蜡烛	_	NN	_	_	3	Poss	_	_
+1	蜡烛	_	NN	_	_	4	Pat	_	_
+2	两	_	CD	_	_	3	Quan	_	_
+3	头	_	NN	_	_	4	Loc	_	_
+4	烧	_	VV	_	_	0	Root	_	_
 ```
 
-输出依然是 `CoNLLSentence` 格式，只不过这次是一个图，图中任意节点可以有零个或任意多个中心词，比如 `中国` 有两个中心词 (ID 2 和 3)。语义依存关系可参考《[中文语义依存分析语料库](https://www.hankcs.com/nlp/sdp-corpus.html)》，或等待正式文档。
+输出依然是 `CoNLLSentence` 格式，只不过这次是一个图，图中任意节点可以有零个或任意多个中心词，比如 `蜡烛` 有两个中心词 (ID 3 和 4)。语义依存关系可参考《[中文语义依存分析语料库](https://www.hankcs.com/nlp/sdp-corpus.html)》，或等待正式文档。
 
 ### 流水线
 
